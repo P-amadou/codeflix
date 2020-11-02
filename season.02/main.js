@@ -10,4 +10,4 @@ const {duplicate,transform} = require ('./streambox')
 }
 duplicate(process.argv[2])*/
 
-transform('./toto.txt',/[a-z]/g,(letter)=> letter.toUpperCase())
+transform('./toto.txt',/[a-z]/g,(letter)=> letter.toUpperCase(),false)

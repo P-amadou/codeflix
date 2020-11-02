@@ -11,7 +11,7 @@ function duplicate(filename) {
     readable.pipe(writable);
     console.log('File:',filename,'successfully duplicated!')
 }
-function transform(filename,re,fn,in_stdout = false) {
+function transform(filename,re,fn,in_stdout) {
     const transformer = new Transform({
         transform(chunk, _,callback){
             this.push(chunk.toString().replace(re,fn))
