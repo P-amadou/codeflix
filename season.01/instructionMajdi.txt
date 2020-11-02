@@ -1,0 +1,11 @@
+mkdir -p ./codeflix/one-code/season.01
+cat -e .season.name
+echo x1_sync.filesystem.1Rn > .season.name
+
+module.exports= function(){
+console.log(process.cwd())
+}
+
+const e02 = require('./e01')
+e01()
+
