@@ -2,6 +2,8 @@ const stream = require('stream');
 const fs = require('fs');
 const path= require('path')
 const {Transform}=require('stream')
+const readline= require('readline')
+
 function duplicate(filename) {
     const{name,ext}=path.parse(filename)
     const readable = fs.createReadStream(filename);
@@ -11,6 +13,7 @@ function duplicate(filename) {
     readable.pipe(writable);
     console.log('File:',filename,'successfully duplicated!')
 }
+
 function transform(filename,re,fn,in_stdout) {
     const transformer = new Transform({
         transform(chunk, _,callback){
@@ -30,7 +33,68 @@ function transform(filename,re,fn,in_stdout) {
     }
     
 }
+
+function csv2json(filename){
+    let headers = []
+    let records = []
+  
+    let lineCount = 0
+  
+    rl.on('line', (line, i) => {
+      if (lineCount === 0) {
+        headers = line.split(';')
+      } else {
+        const record = {}
+  
+        line.split(';').forEach((value, i) => {
+          const key = headers[i]
+  
+          if (value.includes(',')) {
+            record[key] = value.split(',')
+          } else {
+            record[key] = value
+          }
+        })
+  
+        records.push(record)
+      }
+  
+      lineCount++
+    })
+  
+    rl.on('close', () => {
+      const { name } = path.parse(filename)
+  
+      fs.writeFile(`${name}.json`, JSON.stringify(records, null, 2), (err) => {
+        if(err) {
+          return console.log(err);
+        }
+  
+        console.log(`${filename} converted to json: ${name}.json`)
+      })
+    })
+}
+
+function WTFIsThisPipe() {
+    let readFicJs,readerJs
+    readFicJs=fs.readdir(__dirname, (err, files) => { 
+        if (err) 
+          console.log(err); 
+        else { 
+          console.log("Files ext .js:");
+          files.forEach(file => { 
+            if (path.extname(file) == ".js") 
+              console.log(file); 
+              readerJs=fs.readFileSync(file,'utf8');
+              console.log(readerJs);
+          }) 
+        } 
+      }) 
+}
+
 module.exports={
     duplicate,
-    transform
+    transform,
+    csv2json,
+    WTFIsThisPipe
 }

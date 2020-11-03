@@ -1,5 +1,5 @@
 const {empty,withArgs} = require ('./eventbox')
-const {duplicate,transform} = require ('./streambox')
+const {duplicate,transform,csv2json,WTFIsThisPipe} = require ('./streambox')
 //empty()
 //withArgs(tabNames=['Luffy','Zoro','Nami','Sanji','Ussop','Ch0pper','Robin'])
 
@@ -10,4 +10,6 @@ const {duplicate,transform} = require ('./streambox')
 }
 duplicate(process.argv[2])*/
 
-transform('./toto.txt',/[a-z]/g,(letter)=> letter.toUpperCase(),false)
+//transform('./toto.txt',/[a-z]/g,(letter)=> letter.toUpperCase(),false)
+//csv2json(process.argv[2])
+WTFIsThisPipe()
