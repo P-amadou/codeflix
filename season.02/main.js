@@ -11,5 +11,5 @@ const {duplicate,transform,csv2json,WTFIsThisPipe} = require ('./streambox')
 duplicate(process.argv[2])*/
 
 //transform('./toto.txt',/[a-z]/g,(letter)=> letter.toUpperCase(),false)
-//csv2json(process.argv[2])
+csv2json(process.argv[2])
 WTFIsThisPipe()
