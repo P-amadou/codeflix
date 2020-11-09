@@ -1,0 +1,9 @@
+{
+    "scripts": {
+      "main":"learnyounode",
+      "verify":"learnyounode verify"
+    },
+    "dependencies": {
+        "learnyounode": "^4.2.2"
+    }
+}
